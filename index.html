@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pabasra Furnitures | Premium Modern Furniture Sri Lanka</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Inter & Plus Jakarta Sans Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706', // Primary Accent (Warm Amber)
+              700: '#b45309',
+            },
+            dark: {
+              bg: '#0a0c0e',       // Pure deep dark
+              surface: '#121519',  // Main container surface
+              card: '#1a1e24',     // Card element surface
+              border: '#2a2f38',   // Border highlight
+              muted: '#8b949e',    // Secondary text
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom scrollbar styling for slick dark appearance */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0c0e;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2a2f38;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #d97706;
+    }
+    
+    /* Hotspot pulse effect */
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.7); }
+      70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(217, 119, 6, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(217, 119, 6, 0); }
+    }
+    .hotspot-btn {
+      animation: pulse-ring 2s infinite;
+    }
+  </style>
+</head>
+<body class="bg-dark-bg text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-600 selection:text-white">
+
+  <!-- ================= TOP ANNOUNCEMENT BAR ================= -->
+  <div class="bg-gradient-to-r from-amber-950 via-dark-card to-amber-950 border-b border-dark-border text-xs py-2 px-4 text-center text-amber-200/90 tracking-wide font-medium">
+    <div class="container mx-auto flex justify-between items-center px-4">
+      <span class="hidden sm:inline-block text-slate-400"><i class="fa-solid fa-truck-fast text-brand-500 mr-2"></i>Island-wide Delivery Available Across Sri Lanka | Free Delivery for Orders Over Rs. 150,000</span>
+      <span class="mx-auto sm:mx-0"><i class="fa-solid fa-shield-halved text-brand-500 mr-2"></i>100% Solid Teak & Treated Timber Warranty</span>
+      <a href="#catalog" class="hidden md:inline-block underline hover:text-brand-400 transition-colors">Shop Catalog</a>
+    </div>
+  </div>
+
+  <!-- ================= STICKY HEADER / NAV ================= -->
+  <header class="sticky top-0 z-40 bg-dark-bg/90 backdrop-blur-md border-b border-dark-border/80 transition-all duration-200" id="mainHeader">
+    <div class="container mx-auto px-4 lg:px-8 h-20 flex items-center justify-between gap-4">
+      
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="lg:hidden text-slate-300 hover:text-white focus:outline-none p-2">
+        <i class="fa-solid fa-bars text-xl"></i>
+      </button>
+
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-500 to-amber-700 flex items-center justify-center text-dark-bg font-extrabold text-xl shadow-lg shadow-brand-600/20 group-hover:scale-105 transition-transform">
+          P
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xl font-extrabold tracking-wider text-white uppercase font-sans leading-tight">PABASRA</span>
+          <span class="text-[9px] tracking-widest text-brand-500 uppercase font-semibold">F U R N I T U R E S</span>
+        </div>
+      </a>
+
+      <!-- Main Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <button onclick="filterCategory('all')" class="nav-link hover:text-brand-500 transition-colors py-2">All Products</button>
+        <button onclick="filterCategory('living')" class="nav-link hover:text-brand-500 transition-colors py-2">Living</button>
+        <button onclick="filterCategory('dining')" class="nav-link hover:text-brand-500 transition-colors py-2">Dining</button>
+        <button onclick="filterCategory('bedroom')" class="nav-link hover:text-brand-500 transition-colors py-2">Bedroom</button>
+        <button onclick="filterCategory('outdoor')" class="nav-link hover:text-brand-500 transition-colors py-2">Outdoor</button>
+        <a href="#ugc" class="hover:text-brand-500 transition-colors py-2">Lookbook</a>
+      </nav>
+
+      <!-- Header Action Utilities -->
+      <div class="flex items-center gap-3 md:gap-5">
+        <!-- Search Input Bar -->
+        <div class="relative hidden sm:block w-48 md:w-64">
+          <input type="text" id="searchInput" placeholder="Search furniture..." 
+                 class="w-full bg-dark-card border border-dark-border rounded-full py-2 pl-9 pr-4 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all">
+          <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+        </div>
+
+        <!-- Wishlist Icon -->
+        <button class="relative p-2 text-slate-300 hover:text-brand-500 transition-colors" title="Wishlist">
+          <i class="fa-regular fa-heart text-lg"></i>
+          <span class="absolute top-1 right-1 w-2 h-2 bg-brand-500 rounded-full"></span>
+        </button>
+
+        <!-- Cart Trigger Button -->
+        <button id="cartBtn" class="relative bg-dark-card border border-dark-border hover:border-brand-600/50 text-slate-200 hover:text-white px-4 py-2 rounded-full flex items-center gap-2 transition-all shadow-md">
+          <i class="fa-solid fa-bag-shopping text-brand-500"></i>
+          <span class="text-xs font-semibold hidden md:inline">Cart</span>
+          <span id="cartCountBadge" class="bg-brand-600 text-white text-[10px] font-extrabold rounded-full px-1.5 py-0.5 min-w-[18px] text-center">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div id="mobileMenu" class="fixed inset-0 bg-dark-bg/95 z-50 flex flex-col justify-between p-6 -translate-x-full transition-transform duration-300 ease-in-out lg:hidden">
+    <div>
+      <div class="flex justify-between items-center mb-8">
+        <span class="text-xl font-bold tracking-wider text-white">PABASRA FURNITURES</span>
+        <button id="closeMobileMenu" class="text-slate-400 hover:text-white text-2xl">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="flex flex-col gap-4 text-lg font-medium">
+        <button onclick="filterCategory('all'); closeMobileNav();" class="text-left text-slate-200 hover:text-brand-500 py-2 border-b border-dark-border">All Products</button>
+        <button onclick="filterCategory('living'); closeMobileNav();" class="text-left text-slate-200 hover:text-brand-500 py-2 border-b border-dark-border">Living Room</button>
+        <button onclick="filterCategory('dining'); closeMobileNav();" class="text-left text-slate-200 hover:text-brand-500 py-2 border-b border-dark-border">Dining Room</button>
+        <button onclick="filterCategory('bedroom'); closeMobileNav();" class="text-left text-slate-200 hover:text-brand-500 py-2 border-b border-dark-border">Bedroom</button>
+        <button onclick="filterCategory('outdoor'); closeMobileNav();" class="text-left text-slate-200 hover:text-brand-500 py-2 border-b border-dark-border">Outdoor Lounge</button>
+        <a href="#ugc" onclick="closeMobileNav()" class="text-slate-200 hover:text-brand-500 py-2 border-b border-dark-border">Inspiration Lookbook</a>
+      </div>
+    </div>
+    <div class="text-xs text-slate-500 text-center">
+      © 2026 AURA Studio. All rights reserved.
+    </div>
+  </div>
+
+  <main class="flex-grow">
+    <!-- ================= HERO SECTION ================= -->
+    <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden border-b border-dark-border">
+      <!-- Background Image with Dark Vignette Overlay -->
+      <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 scale-105"
+           style="background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop');">
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-r from-dark-bg via-dark-bg/80 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent"></div>
+
+      <!-- Hero Content Banner -->
+      <div class="container mx-auto px-6 lg:px-12 relative z-10 max-w-4xl py-20">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-600/20 border border-brand-500/40 text-brand-400 text-xs font-semibold mb-6 backdrop-blur-md">
+          <span class="w-2 h-2 rounded-full bg-brand-500 animate-ping"></span>
+          Island-Wide Delivery Across Sri Lanka
+        </div>
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] mb-6">
+          Crafted for <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-amber-200 to-amber-500">Sri Lankan Homes</span>
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-300 font-light max-w-2xl mb-10 leading-relaxed">
+          Finest quality Teak, Mahogany, and modern upholstered furniture designed for tropical durability and luxurious living.
+        </p>
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="#catalog" class="bg-brand-600 hover:bg-brand-500 text-white font-semibold px-8 py-4 rounded-xl transition-all shadow-xl shadow-brand-600/25 hover:shadow-brand-500/40 hover:-translate-y-0.5 flex items-center gap-3">
+            <span>Explore Collection</span>
+            <i class="fa-solid fa-arrow-right text-sm"></i>
+          </a>
+          <a href="#ugc" class="bg-dark-card/80 hover:bg-dark-card text-slate-200 border border-dark-border px-8 py-4 rounded-xl font-medium transition-all backdrop-blur-sm hover:border-slate-500">
+            View Lookbook
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CATEGORY QUICK GRID ================= -->
+    <section class="py-16 bg-dark-surface border-b border-dark-border">
+      <div class="container mx-auto px-4 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Shop by Space</h2>
+            <p class="text-sm text-slate-400 mt-1">Curated minimalist pieces designed for harmonious interiors.</p>
+          </div>
+          <button onclick="filterCategory('all')" class="mt-4 md:mt-0 text-xs font-semibold text-brand-500 hover:text-brand-400 flex items-center gap-1 group">
+            View All Categories <i class="fa-solid fa-chevron-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
+          <!-- Living Room -->
+          <div onclick="filterCategory('living')" class="group relative h-64 sm:h-80 rounded-2xl overflow-hidden cursor-pointer border border-dark-border bg-dark-card">
+            <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800&auto=format&fit=crop" alt="Living Room" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-dark-bg/20 to-transparent"></div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <h3 class="text-lg font-bold text-white group-hover:text-brand-400 transition-colors">Living Room</h3>
+              <p class="text-xs text-slate-400 mt-1">Sofas, Lounge Chairs & Tables</p>
+            </div>
+          </div>
+
+          <!-- Dining Room -->
+          <div onclick="filterCategory('dining')" class="group relative h-64 sm:h-80 rounded-2xl overflow-hidden cursor-pointer border border-dark-border bg-dark-card">
+            <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=800&auto=format&fit=crop" alt="Dining Room" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-dark-bg/20 to-transparent"></div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <h3 class="text-lg font-bold text-white group-hover:text-brand-400 transition-colors">Dining</h3>
+              <p class="text-xs text-slate-400 mt-1">Solid Wood Tables & Seating</p>
+            </div>
+          </div>
+
+          <!-- Bedroom -->
+          <div onclick="filterCategory('bedroom')" class="group relative h-64 sm:h-80 rounded-2xl overflow-hidden cursor-pointer border border-dark-border bg-dark-card">
+            <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800&auto=format&fit=crop" alt="Bedroom" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-dark-bg/20 to-transparent"></div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <h3 class="text-lg font-bold text-white group-hover:text-brand-400 transition-colors">Bedroom</h3>
+              <p class="text-xs text-slate-400 mt-1">Bed Frames & Nightstands</p>
+            </div>
+          </div>
+
+          <!-- Outdoor -->
+          <div onclick="filterCategory('outdoor')" class="group relative h-64 sm:h-80 rounded-2xl overflow-hidden cursor-pointer border border-dark-border bg-dark-card">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" alt="Outdoor" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-dark-bg/20 to-transparent"></div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <h3 class="text-lg font-bold text-white group-hover:text-brand-400 transition-colors">Outdoor</h3>
+              <p class="text-xs text-slate-400 mt-1">Weatherproof Loungers & Sets</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CATALOG PRODUCT GRID ================= -->
+    <section id="catalog" class="py-20 bg-dark-bg">
+      <div class="container mx-auto px-4 lg:px-8">
+        
+        <!-- Section Header & Filter Tabs -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-12">
+          <div>
+            <h2 class="text-3xl font-extrabold text-white tracking-tight">Featured Designs</h2>
+            <p class="text-sm text-slate-400 mt-1">Handcrafted furniture designed to bring balance to your living space.</p>
+          </div>
+
+          <!-- Category Tabs -->
+          <div class="flex flex-wrap items-center gap-2 bg-dark-card p-1.5 rounded-xl border border-dark-border" id="filterTabs">
+            <button onclick="filterCategory('all')" data-cat="all" class="cat-btn active px-5 py-2 rounded-lg text-xs font-semibold transition-all bg-brand-600 text-white">All Items</button>
+            <button onclick="filterCategory('living')" data-cat="living" class="cat-btn px-5 py-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all">Living</button>
+            <button onclick="filterCategory('dining')" data-cat="dining" class="cat-btn px-5 py-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all">Dining</button>
+            <button onclick="filterCategory('bedroom')" data-cat="bedroom" class="cat-btn px-5 py-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all">Bedroom</button>
+            <button onclick="filterCategory('outdoor')" data-cat="outdoor" class="cat-btn px-5 py-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all">Outdoor</button>
+          </div>
+        </div>
+
+        <!-- Products Grid Container -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+          <!-- Dynamic JavaScript Cards Rendered Here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VALUE PROPOSITION BANNER ================= -->
+    <section class="py-16 bg-dark-surface border-y border-dark-border">
+      <div class="container mx-auto px-4 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+          <div class="p-4">
+            <div class="w-12 h-12 bg-brand-600/10 border border-brand-500/20 text-brand-500 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl">
+              <i class="fa-solid fa-truck text-brand-500"></i>
+            </div>
+            <h4 class="text-base font-bold text-white">Island-Wide Delivery</h4>
+            <p class="text-xs text-slate-400 mt-2">Safe and reliable transport directly to your doorstep anywhere in Sri Lanka.</p>
+          </div>
+          <div class="p-4">
+            <div class="w-12 h-12 bg-brand-600/10 border border-brand-500/20 text-brand-500 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl">
+              <i class="fa-solid fa-tree"></i>
+            </div>
+            <h4 class="text-base font-bold text-white">Genuine Hardwoods</h4>
+            <p class="text-xs text-slate-400 mt-2">100% seasoned Sri Lankan Teak, Mahogany, and Nadun timber.</p>
+          </div>
+          <div class="p-4">
+            <div class="w-12 h-12 bg-brand-600/10 border border-brand-500/20 text-brand-500 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl">
+              <i class="fa-solid fa-screwdriver-wrench"></i>
+            </div>
+            <h4 class="text-base font-bold text-white">Free Installation</h4>
+            <p class="text-xs text-slate-400 mt-2">Professional setup team handles unloading and assembly in your home.</p>
+          </div>
+          <div class="p-4">
+            <div class="w-12 h-12 bg-brand-600/10 border border-brand-500/20 text-brand-500 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h4 class="text-base font-bold text-white">10-Year Timber Warranty</h4>
+            <p class="text-xs text-slate-400 mt-2">Guaranteed resistance against wood borers, cracking, and structural flaws.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SHOP THE LOOK / UGC HOTSPOT SECTION ================= -->
+    <section id="ugc" class="py-20 bg-dark-bg">
+      <div class="container mx-auto px-4 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <span class="text-xs font-bold uppercase tracking-widest text-brand-500">Inspiration Lookbook</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Pabasra In Real Homes</h2>
+          <p class="text-sm text-slate-400 mt-3">Tap hotspots on styled interior spaces to inspect and shop individual items.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- Hotspot Scene 1: Dark Modern Living Room -->
+          <div class="relative rounded-2xl overflow-hidden border border-dark-border bg-dark-card group">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop" alt="Styled Living Space" class="w-full h-[450px] object-cover">
+            <div class="absolute inset-0 bg-dark-bg/20"></div>
+
+            <!-- Hotspot 1: Sofa -->
+            <div class="absolute top-[55%] left-[45%]">
+              <button onclick="openHotspotModal(1)" class="hotspot-btn w-8 h-8 rounded-full bg-brand-600 border-2 border-white text-white flex items-center justify-center text-xs shadow-lg focus:outline-none">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+
+            <!-- Hotspot 2: Coffee Table -->
+            <div class="absolute top-[75%] left-[30%]">
+              <button onclick="openHotspotModal(2)" class="hotspot-btn w-8 h-8 rounded-full bg-brand-600 border-2 border-white text-white flex items-center justify-center text-xs shadow-lg focus:outline-none">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+
+            <div class="absolute bottom-4 left-4 bg-dark-bg/80 backdrop-blur-md px-4 py-2 rounded-xl text-xs text-slate-200 border border-dark-border">
+              <i class="fa-solid fa-camera text-brand-500 mr-2"></i> Modern Villa, Colombo 07
+            </div>
+          </div>
+
+          <!-- Hotspot Scene 2: Dining Room -->
+          <div class="relative rounded-2xl overflow-hidden border border-dark-border bg-dark-card group">
+            <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1200&auto=format&fit=crop" alt="Styled Dining Space" class="w-full h-[450px] object-cover">
+            <div class="absolute inset-0 bg-dark-bg/20"></div>
+
+            <!-- Hotspot 3: Dining Table -->
+            <div class="absolute top-[60%] left-[50%]">
+              <button onclick="openHotspotModal(3)" class="hotspot-btn w-8 h-8 rounded-full bg-brand-600 border-2 border-white text-white flex items-center justify-center text-xs shadow-lg focus:outline-none">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+
+            <div class="absolute bottom-4 left-4 bg-dark-bg/80 backdrop-blur-md px-4 py-2 rounded-xl text-xs text-slate-200 border border-dark-border">
+              <i class="fa-solid fa-camera text-brand-500 mr-2"></i> Luxury Residence, Kandy
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= NEWSLETTER BANNER ================= -->
+    <section class="py-20 bg-gradient-to-b from-dark-surface to-dark-bg border-t border-dark-border">
+      <div class="container mx-auto px-4 max-w-4xl text-center">
+        <div class="bg-dark-card border border-dark-border rounded-3xl p-8 sm:p-12 relative overflow-hidden shadow-2xl">
+          <div class="absolute -top-24 -right-24 w-60 h-60 bg-brand-600/10 rounded-full blur-3xl"></div>
+          <div class="relative z-10">
+            <h2 class="text-3xl font-extrabold text-white tracking-tight">Get Rs. 10,000 Off Your First Order</h2>
+            <p class="text-sm text-slate-400 mt-2 max-w-lg mx-auto">Subscribe for exclusive discount vouchers, festival offers, and new wood furniture releases.</p>
+            
+            <form onsubmit="handleNewsletter(event)" class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto">
+              <input type="email" required placeholder="Enter your email address..." class="w-full bg-dark-bg border border-dark-border rounded-xl px-4 py-3.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-500">
+              <button type="submit" class="w-full sm:w-auto bg-brand-600 hover:bg-brand-500 text-white font-semibold px-6 py-3.5 rounded-xl text-xs transition-colors shrink-0 shadow-lg shadow-brand-600/20">
+                Subscribe
+              </button>
+            </form>
+            <p id="newsletterSuccess" class="text-xs text-emerald-400 mt-3 hidden">Thank you for subscribing! Check your inbox for your code.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-dark-surface border-t border-dark-border text-slate-400 text-xs py-16">
+    <div class="container mx-auto px-4 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+      
+      <!-- Brand info -->
+      <div class="lg:col-span-2">
+        <a href="#" class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-dark-bg font-extrabold text-lg">P</div>
+          <div class="flex flex-col">
+            <span class="text-lg font-extrabold tracking-wider text-white uppercase font-sans leading-tight">PABASRA</span>
+            <span class="text-[8px] tracking-widest text-brand-500 uppercase font-semibold">F U R N I T U R E S</span>
+          </div>
+        </a>
+        <p class="text-slate-400 max-w-sm leading-relaxed mb-6">
+          Premium Sri Lankan furniture manufacturer bringing contemporary design and solid wood craftsmanship to homes island-wide.
+        </p>
+        <div class="flex items-center gap-4 text-slate-300">
+          <a href="#" class="w-9 h-9 rounded-full bg-dark-card border border-dark-border flex items-center justify-center hover:text-brand-500 hover:border-brand-500 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="w-9 h-9 rounded-full bg-dark-card border border-dark-border flex items-center justify-center hover:text-brand-500 hover:border-brand-500 transition-colors"><i class="fa-brands fa-pinterest"></i></a>
+          <a href="#" class="w-9 h-9 rounded-full bg-dark-card border border-dark-border flex items-center justify-center hover:text-brand-500 hover:border-brand-500 transition-colors"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+      </div>
+
+      <!-- Shop Links -->
+      <div>
+        <h5 class="text-white font-semibold mb-4 uppercase tracking-wider text-[11px]">Shop Catalog</h5>
+        <ul class="space-y-2.5">
+          <li><button onclick="filterCategory('living')" class="hover:text-white transition-colors">Living Room Sofas</button></li>
+          <li><button onclick="filterCategory('dining')" class="hover:text-white transition-colors">Dining Tables</button></li>
+          <li><button onclick="filterCategory('bedroom')" class="hover:text-white transition-colors">Bed Frames</button></li>
+          <li><button onclick="filterCategory('outdoor')" class="hover:text-white transition-colors">Outdoor Patio</button></li>
+          <li><a href="#" class="hover:text-white transition-colors">Lighting & Decor</a></li>
+        </ul>
+      </div>
+
+      <!-- Support Links -->
+      <div>
+        <h5 class="text-white font-semibold mb-4 uppercase tracking-wider text-[11px]">Customer Support</h5>
+        <ul class="space-y-2.5">
+          <li><a href="#" class="hover:text-white transition-colors">Order Tracking</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">30-Day Trial Policy</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Care & Maintenance</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Trade & Interior Designers</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal / Contact -->
+      <div>
+        <h5 class="text-white font-semibold mb-4 uppercase tracking-wider text-[11px]">Showroom & Factory</h5>
+        <p class="leading-relaxed mb-3">Main Street, Moratuwa,<br>Western Province, Sri Lanka</p>
+        <p class="text-brand-500 font-medium">+94 (0) 77 123 4567<br>info@pabrasafurnitures.lk</p>
+      </div>
+    </div>
+
+    <div class="container mx-auto px-4 lg:px-8 mt-12 pt-8 border-t border-dark-border flex flex-col sm:flex-row items-center justify-between text-slate-500 gap-4">
+      <p>© 2026 Pabasra Furnitures (Pvt) Ltd. All rights reserved.</p>
+      <div class="flex items-center gap-6">
+        <a href="#" class="hover:text-slate-300">Privacy Policy</a>
+        <a href="#" class="hover:text-slate-300">Terms of Service</a>
+        <a href="#" class="hover:text-slate-300">Warranty Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= INTERACTIVE CART SLIDE-OVER DRAWER ================= -->
+  <div id="cartDrawerOverlay" class="fixed inset-0 bg-dark-bg/80 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-dark-surface border-l border-dark-border p-6 shadow-2xl flex flex-col justify-between translate-x-full transition-transform duration-300 ease-in-out">
+      
+      <!-- Drawer Header -->
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-dark-border">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-bag-shopping text-brand-500"></i>
+            <h3 class="text-lg font-bold text-white">Your Shopping Bag</h3>
+            <span id="drawerCartCount" class="text-xs text-slate-400">(0 items)</span>
+          </div>
+          <button id="closeCartBtn" class="text-slate-400 hover:text-white text-xl p-1">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <!-- Free Shipping Progress -->
+        <div class="my-4 p-3 rounded-xl bg-dark-card border border-dark-border">
+          <div class="flex justify-between text-xs mb-1.5">
+            <span class="text-slate-300" id="freeShipText">Add Rs. 150,000 for Free Island Delivery</span>
+            <span class="text-brand-500 font-bold" id="freeShipPercent">0%</span>
+          </div>
+          <div class="w-full h-1.5 bg-dark-bg rounded-full overflow-hidden">
+            <div id="freeShipBar" class="h-full bg-brand-500 transition-all duration-300" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Cart Items List Container -->
+        <div id="cartItemsContainer" class="space-y-4 max-h-[50vh] overflow-y-auto pr-1">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- Drawer Footer Summary -->
+      <div class="border-t border-dark-border pt-4">
+        <div class="space-y-2 text-xs mb-4">
+          <div class="flex justify-between text-slate-400">
+            <span>Subtotal</span>
+            <span id="cartSubtotal" class="text-white font-medium">Rs. 0</span>
+          </div>
+          <div class="flex justify-between text-slate-400">
+            <span>Island Delivery</span>
+            <span id="cartShipping" class="text-slate-300">Calculated at Checkout</span>
+          </div>
+          <div class="flex justify-between text-base font-bold text-white pt-2 border-t border-dark-border">
+            <span>Total</span>
+            <span id="cartTotal" class="text-brand-400">Rs. 0</span>
+          </div>
+        </div>
+
+        <button onclick="checkoutMock()" class="w-full bg-brand-600 hover:bg-brand-500 text-white font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider transition-all shadow-lg shadow-brand-600/20">
+          Proceed to Checkout
+        </button>
+        <p class="text-[10px] text-center text-slate-500 mt-3">
+          <i class="fa-solid fa-lock text-brand-500 mr-1"></i> Cash on Delivery & Card Payments Accepted Across Sri Lanka
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= QUICK VIEW MODAL ================= -->
+  <div id="quickViewModal" class="fixed inset-0 bg-dark-bg/80 backdrop-blur-md z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="bg-dark-surface border border-dark-border rounded-2xl max-w-2xl w-full p-6 relative shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto">
+      <button id="closeModalBtn" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl z-10 w-8 h-8 rounded-full bg-dark-bg/80 border border-dark-border flex items-center justify-center">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-dark-card rounded-xl overflow-hidden border border-dark-border h-64 md:h-auto">
+          <img id="modalImage" src="" alt="" class="w-full h-full object-cover">
+        </div>
+        
+        <div class="flex flex-col justify-between">
+          <div>
+            <span id="modalCategory" class="text-[10px] font-bold uppercase tracking-wider text-brand-500"></span>
+            <h3 id="modalTitle" class="text-xl font-bold text-white mt-1"></h3>
+            
+            <div class="flex items-center gap-2 mt-2">
+              <div id="modalRatingStars" class="flex text-xs"></div>
+              <span id="modalReviewCount" class="text-xs text-slate-500 font-medium"></span>
+            </div>
+            
+            <p id="modalPrice" class="text-xl font-extrabold text-brand-400 mt-3"></p>
+            <p id="modalDescription" class="text-xs text-slate-400 mt-3 leading-relaxed"></p>
+            
+            <div class="mt-4">
+              <span class="text-xs text-slate-300 font-medium block mb-2">Available Swatches:</span>
+              <div id="modalSwatches" class="flex items-center gap-2"></div>
+            </div>
+          </div>
+          
+          <div class="mt-6 pt-4 border-t border-dark-border">
+            <button id="modalAddToCartBtn" class="w-full bg-brand-600 hover:bg-brand-500 text-white font-semibold py-3 rounded-xl text-xs transition-colors flex items-center justify-center gap-2 shadow-lg shadow-brand-600/20">
+              <i class="fa-solid fa-cart-plus"></i> Add To Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    // PRODUCT CATALOG DATA (SL LKR Currency)
+    const products = [
+      {
+        id: 1,
+        title: "Sven Charcoal Velvet Sofa",
+        category: "living",
+        price: 245000,
+        rating: 4.9,
+        reviews: 128,
+        image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800&auto=format&fit=crop",
+        colors: [
+          { name: "Charcoal", hex: "#1e2229", img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800&auto=format&fit=crop" },
+          { name: "Forest Green", hex: "#1b382b", img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800&auto=format&fit=crop" },
+          { name: "Cognac Tan", hex: "#8c532b", img: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=800&auto=format&fit=crop" }
+        ],
+        desc: "Classic mid-century silhouette featuring deep tufted velvet upholstery and treated solid Teak legs."
+      },
+      {
+        id: 2,
+        title: "Nossa Solid Teak Dining Table",
+        category: "dining",
+        price: 195000,
+        rating: 4.8,
+        reviews: 94,
+        image: "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=800&auto=format&fit=crop",
+        colors: [
+          { name: "Teak Wood", hex: "#4a3525", img: "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=800&auto=format&fit=crop" },
+          { name: "Mahogany Finish", hex: "#b59b7c", img: "https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?q=80&w=800&auto=format&fit=crop" }
+        ],
+        desc: "Minimalist dining table handcrafted from 100% seasoned Sri Lankan Teak wood with lifetime warranty."
+      },
+      {
+        id: 3,
+        title: "Lento Upholstered Low Bed Frame",
+        category: "bedroom",
+        price: 165000,
+        rating: 4.9,
+        reviews: 76,
+        image: "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800&auto=format&fit=crop",
+        colors: [
+          { name: "Slate", hex: "#333a42", img: "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800&auto=format&fit=crop" },
+          { name: "Oatmeal", hex: "#d1c7b7", img: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=800&auto=format&fit=crop" }
+        ],
+        desc: "Low-profile King size platform bed with a woven headboard and internal seasoned timber support structure."
+      },
+      {
+        id: 4,
+        title: "Mira Outdoor Teak Lounger",
+        category: "outdoor",
+        price: 115000,
+        rating: 4.7,
+        reviews: 52,
+        image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
+        colors: [
+          { name: "Natural Teak", hex: "#8f673f", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" }
+        ],
+        desc: "Weatherproof grade-A teak lounger built specifically for humid coastal climates with quick-dry cushions."
+      },
+      {
+        id: 5,
+        title: "Otis Leather Accent Armchair",
+        category: "living",
+        price: 145000,
+        rating: 4.9,
+        reviews: 110,
+        image: "https://images.unsplash.com/photo-1580481072645-022f9a6d8310?q=80&w=800&auto=format&fit=crop",
+        colors: [
+          { name: "Saddle Tan", hex: "#9e5f38", img: "https://images.unsplash.com/photo-1580481072645-022f9a6d8310?q=80&w=800&auto=format&fit=crop" },
+          { name: "Onyx Black", hex: "#141414", img: "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?q=80&w=800&auto=format&fit=crop" }
+        ],
+        desc: "Top-grain genuine leather armchair with ergonomically reclined angles and solid Mahogany frame."
+      },
+      {
+        id: 6,
+        title: "Koster Minimalist Teak Nightstand",
+        category: "bedroom",
+        price: 48000,
+        rating: 4.6,
+        reviews: 38,
+        image: "https://images.unsplash.com/photo-1532323544230-7191fd51bc1b?q=80&w=800&auto=format&fit=crop",
+        colors: [
+          { name: "Smoked Ash", hex: "#2b2a28", img: "https://images.unsplash.com/photo-1532323544230-7191fd51bc1b?q=80&w=800&auto=format&fit=crop" }
+        ],
+        desc: "Compact bedside table with smooth drawer runners and anti-moisture matte coating."
+      },
+      {
+        id: 7,
+        title: "Sol Sculptural Teak Dining Chair",
+        category: "dining",
+        price: 38000,
+        rating: 4.8,
+        reviews: 84,
+        image: "https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=800&auto=format&fit=crop",
+        colors: [
+          { name: "Matte Black", hex: "#1a1a1a", img: "https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=800&auto=format&fit=crop" },
+          { name: "Natural Teak", hex: "#cfa67c", img: "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?q=80&w=800&auto=format&fit=crop" }
+        ],
+        desc: "Hand-bent solid wood dining chair engineered for maximum comfort and durability."
+      },
+      {
+        id: 8,
+        title: "Aira Concrete & Teak Coffee Table",
+        category: "living",
+        price: 82000,
+        rating: 4.7,
+        reviews: 61,
+        image: "https://images.unsplash.com/photo-1533779283484-8ad4940aa3a8?q=80&w=800&auto=format&fit=crop",
+        colors: [
+          { name: "Dark Terrazzo", hex: "#3b3e45", img: "https://images.unsplash.com/photo-1533779283484-8ad4940aa3a8?q=80&w=800&auto=format&fit=crop" }
+        ],
+        desc: "Modern centerpiece featuring a sealed terrazzo stone slab resting on solid Teak legs."
+      }
+    ];
+
+    // SHOPPING CART STATE
+    let cart = [];
+    let activeCategory = 'all';
+
+    // RENDER PRODUCT CATALOG
+    function renderProducts(items) {
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = '';
+
+      if (items.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-16 text-center text-slate-500">
+            <i class="fa-solid fa-box-open text-4xl mb-3 text-brand-600"></i>
+            <p>No products found matching your search.</p>
+          </div>
+        `;
+        return;
+      }
+
+      items.forEach(product => {
+        const card = document.createElement('div');
+        card.className = "bg-dark-card border border-dark-border rounded-2xl overflow-hidden group hover:border-brand-600/40 transition-all duration-300 flex flex-col justify-between";
+        
+        // Render rating stars
+        const starsHtml = Array.from({length: 5}).map((_, i) => 
+          `<i class="fa-solid fa-star ${i < Math.floor(product.rating) ? 'text-amber-400' : 'text-slate-700'}"></i>`
+        ).join('');
+
+        // Render color swatches
+        const swatchesHtml = product.colors.map((c, idx) => `
+          <button onclick="changeProductImage(event, ${product.id}, '${c.img}')" 
+                  class="w-4 h-4 rounded-full border border-dark-border transition-transform hover:scale-125 focus:ring-1 focus:ring-brand-500 ${idx===0?'ring-1 ring-brand-500':''}" 
+                  style="background-color: ${c.hex};" 
+                  title="${c.name}"></button>
+        `).join('');
+
+        card.innerHTML = `
+          <div>
+            <!-- Image Frame -->
+            <div class="relative bg-dark-surface h-64 overflow-hidden">
+              <img id="prod-img-${product.id}" src="${product.image}" alt="${product.title}" 
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              
+              <!-- Quick View Button -->
+              <button onclick="openQuickView(${product.id})" class="absolute bottom-3 left-1/2 -translate-x-1/2 bg-dark-bg/90 hover:bg-brand-600 text-slate-200 hover:text-white text-xs font-semibold px-4 py-2 rounded-full border border-dark-border backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-xl">
+                Quick View
+              </button>
+            </div>
+
+            <!-- Content Details -->
+            <div class="p-5">
+              <div class="flex justify-between items-start gap-2">
+                <div>
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-brand-500">${product.category}</span>
+                  <h3 class="text-base font-bold text-white group-hover:text-brand-400 transition-colors mt-0.5 line-clamp-1">${product.title}</h3>
+                </div>
+                <p class="text-sm font-extrabold text-brand-400 shrink-0">Rs. ${product.price.toLocaleString()}</p>
+              </div>
+
+              <!-- Rating -->
+              <div class="flex items-center gap-1.5 text-xs mt-2">
+                <div class="flex text-[10px] gap-0.5">${starsHtml}</div>
+                <span class="text-slate-500 font-medium">(${product.reviews})</span>
+              </div>
+
+              <!-- Color Swatch Row -->
+              <div class="flex items-center gap-2 mt-4">
+                <span class="text-[10px] text-slate-500 font-medium">Variants:</span>
+                <div class="flex items-center gap-1.5">${swatchesHtml}</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add to Cart Footer Button -->
+          <div class="px-5 pb-5 pt-0">
+            <button onclick="addToCart(${product.id})" class="w-full bg-dark-surface hover:bg-brand-600 text-slate-200 hover:text-white border border-dark-border hover:border-brand-600 py-2.5 rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-2 shadow-md">
+              <i class="fa-solid fa-cart-plus"></i> Add To Cart
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // INTERACTIVE COLOR SWATCH CHANGE
+    function changeProductImage(e, productId, imgUrl) {
+      e.stopPropagation();
+      const imgElem = document.getElementById(`prod-img-${productId}`);
+      if (imgElem) {
+        imgElem.style.opacity = '0.4';
+        setTimeout(() => {
+          imgElem.src = imgUrl;
+          imgElem.style.opacity = '1';
+        }, 150);
+      }
+    }
+
+    // FILTER CATEGORY
+    function filterCategory(cat) {
+      activeCategory = cat;
+      
+      // Update Tab Styles
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        if(btn.getAttribute('data-cat') === cat) {
+          btn.className = "cat-btn active px-5 py-2 rounded-lg text-xs font-semibold transition-all bg-brand-600 text-white shadow-md";
+        } else {
+          btn.className = "cat-btn px-5 py-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all";
+        }
+      });
+
+      const filtered = cat === 'all' ? products : products.filter(p => p.category === cat);
+      renderProducts(filtered);
+    }
+
+    // SEARCH FILTER
+    document.getElementById('searchInput')?.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      const filtered = products.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
+      renderProducts(filtered);
+    });
+
+    // CART DRAWER TOGGLES & ACTIONS
+    const cartDrawerOverlay = document.getElementById('cartDrawerOverlay');
+    const cartDrawer = document.getElementById('cartDrawer');
+    const cartBtn = document.getElementById('cartBtn');
+    const closeCartBtn = document.getElementById('closeCartBtn');
+
+    function toggleCart(open = true) {
+      if(open) {
+        cartDrawerOverlay.classList.remove('opacity-0', 'pointer-events-none');
+        cartDrawer.classList.remove('translate-x-full');
+      } else {
+        cartDrawerOverlay.classList.add('opacity-0', 'pointer-events-none');
+        cartDrawer.classList.add('translate-x-full');
+      }
+    }
+
+    cartBtn.addEventListener('click', () => toggleCart(true));
+    closeCartBtn.addEventListener('click', () => toggleCart(false));
+    cartDrawerOverlay.addEventListener('click', (e) => {
+      if(e.target === cartDrawerOverlay) toggleCart(false);
+    });
+
+    // ADD TO CART FUNCTIONALITY
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      if(!product) return;
+
+      const existingIndex = cart.findIndex(item => item.id === productId);
+      if(existingIndex > -1) {
+        cart[existingIndex].qty += 1;
+      } else {
+        cart.push({ ...product, qty: 1 });
+      }
+
+      updateCartUI();
+      toggleCart(true);
+    }
+
+    function updateCartQty(productId, delta) {
+      const index = cart.findIndex(item => item.id === productId);
+      if(index > -1) {
+        cart[index].qty += delta;
+        if(cart[index].qty <= 0) {
+          cart.splice(index, 1);
+        }
+      }
+      updateCartUI();
+    }
+
+    // QUICK VIEW MODAL LOGIC
+    const modal = document.getElementById('quickViewModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    let currentModalProduct = null;
+
+    function openQuickView(productId) {
+      const product = products.find(p => p.id === productId);
+      if(!product) return;
+      currentModalProduct = product;
+
+      document.getElementById('modalTitle').innerText = product.title;
+      document.getElementById('modalCategory').innerText = product.category;
+      document.getElementById('modalPrice').innerText = `Rs. ${product.price.toLocaleString()}`;
+      document.getElementById('modalDescription').innerText = product.desc;
+      document.getElementById('modalImage').src = product.image;
+      document.getElementById('modalReviewCount').innerText = `(${product.reviews} reviews)`;
+
+      // Stars
+      const starsContainer = document.getElementById('modalRatingStars');
+      starsContainer.innerHTML = Array.from({length: 5}).map((_, i) => 
+        `<i class="fa-solid fa-star ${i < Math.floor(product.rating) ? 'text-amber-400' : 'text-slate-700'}"></i>`
+      ).join('');
+
+      // Swatches
+      const swatchesContainer = document.getElementById('modalSwatches');
+      swatchesContainer.innerHTML = product.colors.map(c => `
+        <button onclick="document.getElementById('modalImage').src='${c.img}'" 
+                class="w-6 h-6 rounded-full border border-dark-border hover:scale-110 transition-transform" 
+                style="background-color: ${c.hex};" 
+                title="${c.name}"></button>
+      `).join('');
+
+      // Modal Add To Cart
+      document.getElementById('modalAddToCartBtn').onclick = () => {
+        addToCart(product.id);
+        closeQuickView();
+      };
+
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function closeQuickView() {
+      modal.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function updateCartUI() {
+      // Update badges
+      const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById('cartCountBadge').innerText = totalCount;
+      document.getElementById('drawerCartCount').innerText = `(${totalCount} items)`;
+
+      // Render cart items
+      const container = document.getElementById('cartItemsContainer');
+      container.innerHTML = '';
+
+      if(cart.length === 0) {
+        container.innerHTML = `
+          <div class="py-12 text-center text-slate-500">
+            <i class="fa-solid fa-basket-shopping text-3xl mb-2 text-dark-border"></i>
+            <p class="text-xs">Your bag is currently empty.</p>
+          </div>
+        `;
+      } else {
+        cart.forEach(item => {
+          const itemEl = document.createElement('div');
+          itemEl.className = "flex items-center gap-3 p-3 bg-dark-card border border-dark-border rounded-xl";
+          itemEl.innerHTML = `
+            <img src="${item.image}" alt="${item.title}" class="w-16 h-16 object-cover rounded-lg bg-dark-surface shrink-0">
+            <div class="flex-grow min-w-0">
+              <h4 class="text-xs font-bold text-white truncate">${item.title}</h4>
+              <p class="text-xs font-extrabold text-brand-400 mt-0.5">Rs. ${item.price.toLocaleString()}</p>
+              
+              <!-- Qty buttons -->
+              <div class="flex items-center gap-2 mt-2">
+                <button onclick="updateCartQty(${item.id}, -1)" class="w-5 h-5 rounded bg-dark-bg border border-dark-border text-xs text-slate-300 hover:text-white flex items-center justify-center">-</button>
+                <span class="text-xs text-slate-200 font-semibold">${item.qty}</span>
+                <button onclick="updateCartQty(${item.id}, 1)" class="w-5 h-5 rounded bg-dark-bg border border-dark-border text-xs text-slate-300 hover:text-white flex items-center justify-center">+</button>
+              </div>
+            </div>
+            <button onclick="updateCartQty(${item.id}, -${item.qty})" class="text-slate-500 hover:text-rose-400 text-xs p-1">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          `;
+          container.appendChild(itemEl);
+        });
+      }
+
+      // Calculations
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      document.getElementById('cartSubtotal').innerText = `Rs. ${subtotal.toLocaleString()}`;
+      document.getElementById('cartTotal').innerText = `Rs. ${subtotal.toLocaleString()}`;
+
+      // Free shipping progress bar (Rs. 150,000 threshold)
+      const freeShipGoal = 150000;
+      const pct = Math.min(100, Math.round((subtotal / freeShipGoal) * 100));
+      document.getElementById('freeShipBar').style.width = `${pct}%`;
+      document.getElementById('freeShipPercent').innerText = `${pct}%`;
+
+      if(subtotal >= freeShipGoal) {
+        document.getElementById('freeShipText').innerText = "🎉 Unlocked Free Island-Wide Delivery!";
+      } else {
+        const remaining = freeShipGoal - subtotal;
+        document.getElementById('freeShipText').innerText = `Add Rs. ${remaining.toLocaleString()} for Free Delivery`;
+      }
+    }
+
+    closeModalBtn.addEventListener('click', closeQuickView);
+    modal.addEventListener('click', (e) => {
+      if(e.target === modal) closeQuickView();
+    });
+
+    // HOTSPOT LOOKBOOK TRIGGER
+    function openHotspotModal(hotspotId) {
+      // Map hotspot ID to corresponding products
+      if(hotspotId === 1) openQuickView(1); // Sofa
+      if(hotspotId === 2) openQuickView(8); // Coffee Table
+      if(hotspotId === 3) openQuickView(2); // Dining Table
+    }
+
+    // MOBILE NAV DRAWER
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const closeMobileMenu = document.getElementById('closeMobileMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('-translate-x-full');
+    });
+
+    closeMobileMenu.addEventListener('click', closeMobileNav);
+    function closeMobileNav() {
+      mobileMenu.classList.add('-translate-x-full');
+    }
+
+    // MOCK NEWSLETTER SUBMIT
+    function handleNewsletter(e) {
+      e.preventDefault();
+      document.getElementById('newsletterSuccess').classList.remove('hidden');
+      e.target.reset();
+    }
+
+    function checkoutMock() {
+      if(cart.length === 0) {
+        alert('Your bag is currently empty!');
+        return;
+      }
+      alert('Redirecting to SSL Secure Checkout...');
+    }
+
+    // INITIAL RENDER
+    window.onload = function() {
+      renderProducts(products);
+    };
+  </script>
+</body>
+</html>
